@@ -9,124 +9,125 @@
     <script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
 </head>
 <body>
-<div style="height: 100px; width: 100px; background: black" onclick="setLanguage('ru')"></div>
+<div style="display: flex; flex-direction: row; justify-content: center">
+    <div style="padding: 50px; display: flex; flex-direction: row; width: 90%; justify-content: space-between">
+        <img onclick="setLanguage('de')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="/images/de.png" alt="">
+        <img onclick="setLanguage('ua')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="/images/ua.png" alt="">
+        <img onclick="setLanguage('en')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="/images/uk.png" alt="">
+        <img onclick="setLanguage('ru')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="/images/ru.png" alt="">
+    </div>
+</div>
 <div style="height: 100px; width: 100px; background: blue" onclick="setData(window.lol)"></div>
-<?php if (isset($_GET['id'])): ?>
-    <div id="status"></div>
-<?php endif; ?>
 <div id="formio"></div>
 <script type="text/javascript">
   var height = 0;
   var container = document.querySelector('#formio');
   window.lol = {
-      "data": {
-        "textField": "asd",
-        "textField1": "adssd",
-        "textField2": "sdf",
-        "day": "12\/12\/1987",
-        "textField3": "asdasd",
-        "ukrainischeRStaatsangehorigeR": "nein",
-        "textField4": "gsdf",
-        "dataGrid": [{
-          "nameGebDatum": "ycvswf",
-          "dateTime": "2022-03-02T00:00:00-06:00",
-          "textField": "ydfefd"
-        }],
-        "textField5": "saertfysdf",
-        "textField6": "aesdfqef",
-        "textField7": "12312",
-        "textField8": "sfew",
-        "file": [{
-          "storage": "url",
-          "name": "IMG-20210805-WA0002-03e5df75-c837-43c4-926b-0d9c48e73d02.jpg",
-          "url": "https:\/\/test.kleinanzeigen.mx\/formio\/upload.php?baseUrl=https%3A%2F%2Flvkwovhndcyuiqe.form.io&project=&form=\/IMG-20210805-WA0002-03e5df75-c837-43c4-926b-0d9c48e73d02.jpg",
-          "size": 50798,
-          "type": "image\/jpeg",
-          "data": {
-            "code": 1,
-            "filename": "img-20210805-wa0002.jpg",
-            "baseUrl": "https:\/\/lvkwovhndcyuiqe.form.io",
-            "project": "",
-            "form": ""
-          },
-          "originalName": "IMG-20210805-WA0002.jpg"
-        }],
-        "submit": true,
-        "letzterAufenthaltsstatusInDerUkraine": "asdasdas"
-      },
-      "metadata": {
-        "timezone": "America\/Mexico_City",
-        "offset": -360,
-        "origin": "https:\/\/hossidev.ligainsider.de",
-        "referrer": "",
-        "browserName": "Netscape",
-        "userAgent": "Mozilla\/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit\/603.1.30 (KHTML, like Gecko) Version\/10.0 Mobile\/14E304 Safari\/602.1",
-        "pathName": "\/api\/test10\/",
-        "onLine": true
-      }
+    "data": {
+      "textField": "asd",
+      "textField1": "adssd",
+      "textField2": "sdf",
+      "day": "12\/12\/1987",
+      "textField3": "asdasd",
+      "ukrainischeRStaatsangehorigeR": "nein",
+      "textField4": "gsdf",
+      "dataGrid": [{
+        "nameGebDatum": "ycvswf",
+        "dateTime": "2022-03-02T00:00:00-06:00",
+        "textField": "ydfefd"
+      }],
+      "textField5": "saertfysdf",
+      "textField6": "aesdfqef",
+      "textField7": "12312",
+      "textField8": "sfew",
+      "file": [{
+        "storage": "url",
+        "name": "IMG-20210805-WA0002-03e5df75-c837-43c4-926b-0d9c48e73d02.jpg",
+        "url": "https:\/\/test.kleinanzeigen.mx\/formio\/upload.php?baseUrl=https%3A%2F%2Flvkwovhndcyuiqe.form.io&project=&form=\/IMG-20210805-WA0002-03e5df75-c837-43c4-926b-0d9c48e73d02.jpg",
+        "size": 50798,
+        "type": "image\/jpeg",
+        "data": {
+          "code": 1,
+          "filename": "img-20210805-wa0002.jpg",
+          "baseUrl": "https:\/\/lvkwovhndcyuiqe.form.io",
+          "project": "",
+          "form": ""
+        },
+        "originalName": "IMG-20210805-WA0002.jpg"
+      }],
+      "submit": true,
+      "letzterAufenthaltsstatusInDerUkraine": "asdasdas"
+    },
+    "metadata": {
+      "timezone": "America\/Mexico_City",
+      "offset": -360,
+      "origin": "https:\/\/hossidev.ligainsider.de",
+      "referrer": "",
+      "browserName": "Netscape",
+      "userAgent": "Mozilla\/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit\/603.1.30 (KHTML, like Gecko) Version\/10.0 Mobile\/14E304 Safari\/602.1",
+      "pathName": "\/api\/test10\/",
+      "onLine": true
+    }
   };
-  window.onload = function () {
-    Formio.createForm(document.getElementById('formio'), 'https://lvkwovhndcyuiqe.form.io/test', {
-      language: 'en',
-      i18n: {
-        en: {
-          submitError: 'My custom submission error',
-        },
-        ru: {Familienname: 'PARUSKI', 'Ukrainische(r) Staatsangehörige(r)': 'still paruski'}
-      }
-    }).then((form) => {
-      window.parent.postMessage({formio: true, height: container.scrollHeight}, '*');
-      window.setLanguage = function (lang) {
-        form.language = lang;
-      };
-      window.setData = function (data) {
-        form.submission = {...data}
-      }
-        <?php if(isset($_GET['id'])): ?>
-      Formio.fetch('https://hossidev.ligainsider.de/api/mongoget/', {
-        body: JSON.stringify({id: '<?= $_GET['id'] ?>'}),
-        headers: {
-          'content-type': 'application/json'
-        },
-        method: 'POST',
-        mode: 'cors',
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          console.log(json);
-          if (json.code == 1) {
-            setData(json.data);
-            $('#status').text('STATUS: ' + json.data.status)
-          } else {
-            $('#status').text('STATUS: NICHT GEFUNDEN')
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-        <?php endif; ?>
-      form.nosubmit = true;
-      form.on('submit', function (submission) {
-        //console.log(JSON.stringify(submission));
-        window.lol = submission
+  var languages = false;
+  function waitForLanguages(json){
+    if (languages !== false){
+      Formio.createForm(document.getElementById('formio'), json, {
+        language: 'de',
+        i18n: languages
+      }).then((form) => {
+        window.parent.postMessage({formio: true, height: container.scrollHeight}, '*');
+        window.setLanguage = function (lang) {
+          form.language = lang;
+        };
+        window.setData = function (data) {
+          form.submission = {...data}
+        }
+        form.nosubmit = true;
+        form.on('submit', function (submission) {
+          //console.log(JSON.stringify(submission));
+          window.lol = submission
 
-        return Formio.fetch('https://test.kleinanzeigen.mx/formio/mongoadd.php', {
-          body: JSON.stringify(submission),
-          headers: {
-            'content-type': 'application/json'
-          },
-          method: 'POST',
-          mode: 'cors',
-        })
-          .then((response) => response.json())
-          .then((json) => {
-            console.log(json);
+          return Formio.fetch('https://test.kleinanzeigen.mx/formio/mongoadd.php', {
+            body: JSON.stringify(submission),
+            headers: {
+              'content-type': 'application/json'
+            },
+            method: 'POST',
+            mode: 'cors',
           })
-          .catch((error) => {
-            console.error(error);
-          });
+            .then((response) => response.json())
+            .then((json) => {
+              console.log(json);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        });
       });
-    });
+    }
+    else{
+      setTimeout(() => waitForLanguages(json), 50);
+    }
+  }
+  window.onload = function () {
+    fetch('https://test.kleinanzeigen.mx/formio/getlanguages.php')
+      .then((response) => response.json())
+      .then((json) => {
+        languages = json
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    fetch('https://test.kleinanzeigen.mx/formio/getformioconfig.php')
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        waitForLanguages(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   var observeDOM = (function () {
