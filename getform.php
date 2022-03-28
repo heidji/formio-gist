@@ -15,7 +15,7 @@
   var container = document.querySelector('#formio');
   window.onload = function () {
     Formio.createForm(document.getElementById('formio'), 'https://lvkwovhndcyuiqe.form.io/test', {
-      readOnly: true,
+      //readOnly: true,
       language: 'en',
       i18n: {
         en: {
@@ -24,6 +24,7 @@
         ru: {Familienname: 'PARUSKI', 'Ukrainische(r) Staatsangehörige(r)': 'still paruski'}
       }
     }).then((form) => {
+      console.log(form);
       window.parent.postMessage({formio: true, height: container.scrollHeight}, '*');
       window.setLanguage = function (lang) {
         form.language = lang;
@@ -48,16 +49,12 @@
             $('#formio').html('<b>STATUS: NICHT GEFUNDEN</b>')
           }
         })
-        .catch((error) => {
-          console.error(error);
-        });
         <?php endif; ?>
       form.nosubmit = true;
       form.on('submit', function (submission) {
         //console.log(JSON.stringify(submission));
         window.lol = submission
-
-        return Formio.fetch('https://hossidev.ligainsider.de/api/mongoadd/', {
+        return Formio.fetch('https://test.kleinanzeigen.mx/formio/mongoedit.php', {
           body: JSON.stringify(submission),
           headers: {
             'content-type': 'application/json'
@@ -67,6 +64,7 @@
         })
           .then((response) => response.json())
           .then((json) => {
+            setData(submission);
             console.log(json);
           })
           .catch((error) => {

@@ -7,18 +7,6 @@ header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 
-$body = '<iframe id="formioframe" style="width: 100%" scrolling = "no" src = "http://test.kleinanzeigen.mx/getform.php?id=9" title = "description"> </iframe> <script> function resizeIframe(height) { document.getElementById("formioframe").style.height = height + "px" } var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent"; var eventer = window[eventMethod]; var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message"; eventer(messageEvent, function(e) { if ("formio" in e.data) resizeIframe(e.data.height); });</script>';
-$sql = 'UPDATE ost_thread_entry SET body = ? WHERE id = 9';
-$stmt = $db->prepare($sql);
-$stmt->bind_param('s', $body);
-$stmt->execute();
-/*$sql = 'UPDATE ost_thread_entry SET body = REPLACE(body, "\", "") WHERE id = 9';
-$stmt = $db->prepare($sql);
-$stmt->bind_param('s', $body);
-$stmt->execute();
-$stmt->close();
-exit;*/
-
 $manager = new MongoDB\Driver\Manager(
     'mongodb://localhost:27017'
 );
@@ -45,7 +33,7 @@ while (!$unique) {
         $unique = true;
 }
 
-$body = str_replace('"', '\"', '<iframe id="formioframe" frameborder="0" style="width: 100%" scrolling = "no" src = "http://test.kleinanzeigen.mx/getform.php?id='.$id.'" title = "description"> </iframe> <script> function resizeIframe(height) { document.getElementById("formioframe").style.height = height + "px" } var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent"; var eventer = window[eventMethod]; var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message"; eventer(messageEvent, function(e) { if ("formio" in e.data) resizeIframe(e.data.height); });</script>');
+$body = str_replace('"', '\"', '<iframe id="formioframe" frameborder="0" style="width: 100%" scrolling = "no" src = "https://test.kleinanzeigen.mx/formio/getform.php?id='.$id.'" title = "description"> </iframe> <script> function resizeIframe(height) { document.getElementById("formioframe").style.height = height + "px" } var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent"; var eventer = window[eventMethod]; var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message"; eventer(messageEvent, function(e) { if ("formio" in e.data) resizeIframe(e.data.height); });</script>');
 $ticket = '{"name": "'.$id.'", "email": "hans@hans.de", "phone": "12345678", "notes": "no notes", "subject": "subject", "message": "", "ip": "79.227.189.214", "topicId": 1 }';
 
 $ch = curl_init('https://test.kleinanzeigen.mx/osticket/api/http.php/tickets.json');

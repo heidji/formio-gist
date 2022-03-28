@@ -1,29 +1,55 @@
 <?php
 
-$input = json_decode(file_get_contents('php://input'));
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 
-$manager = new MongoDB\Driver\Manager(
-    'mongodb://localhost:27017'
-);
-$input = (object)[];
-$input->id = '01e61424-8ee9-4313-a5c9-716c3c52a154';
-$filter = ['_id' => $input->id];
-$options = [];
+if (!isset($_GET['id'])) {
+    $status = 'NICHT GEFUNDEN';
+}else{
+    $manager = new MongoDB\Driver\Manager(
+        'mongodb://localhost:27017'
+    );
 
-$query = new MongoDB\Driver\Query($filter, $options);
-$cursor = $manager->executeQuery('db.collection', $query);
+    $filter = ['_id' => $_GET['id']];
+    $options = [];
 
-$res = $cursor->toArray();
+    $query = new MongoDB\Driver\Query($filter, $options);
+    $cursor = $manager->executeQuery('db.collection', $query);
 
-if(count($res) == 0){
-    echo json_encode(['code' => 0]);
-    exit;
+    $res = $cursor->toArray();
+
+    if(count($res) == 0){
+        $status = 'NICHT GEFUNDEN';
+    }else{
+        foreach ($res as $document) {
+            $osticket = $document->osticket;
+            break;
+        }
+        if(!is_numeric($osticket)){
+            $status = 'NICHT GEFUNDEN';
+        }else{
+            $db = new mysqli("localhost","user","password","osticket");
+
+            $sql = 'SELECT 
+                        ts.name FROM
+                    ost_ticket_status ts
+                    JOIN ost_ticket t
+                    on t.status_id = ts.id
+                    where t.number = ?
+                    limit 1';
+
+            $stmt = $db->prepare($sql);
+            $stmt->bind_param('i', $osticket);
+            $stmt->bind_result($status);
+            $stmt->execute();
+            $stmt->fetch();
+            $stmt->close();
+
+            if(!isset($status))
+                $status = 'NICHT GEFUNDEN';
+        }
+    }
 }
 
-foreach ($res as $document) {
-    echo json_encode(['code' => 1, 'data' => $document]);
-    exit;
-}
+echo json_encode(['status' => $status]);

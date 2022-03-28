@@ -19,37 +19,51 @@
   var height = 0;
   var container = document.querySelector('#formio');
   window.lol = {
-    "data": {
-      "textField": "asd",
-      "textField1": "adssd",
-      "textField2": "sdf",
-      "day": "12/12/1987",
-      "textField3": "asdasd",
-      "ukrainischeRStaatsangehorigeR": "nein",
-      "textField4": "gsdf",
-      "dataGrid": [{
-        "nameGebDatum": "ycvswf",
-        "dateTime": "2022-03-02T00:00:00-06:00",
-        "textField": "ydfefd"
-      }],
-      "textField5": "saertfysdf",
-      "textField6": "aesdfqef",
-      "textField7": "12312",
-      "textField8": "sfew",
-      "submit": true,
-      "letzterAufenthaltsstatusInDerUkraine": "asdasdas"
-    },
-    "metadata": {
-      "timezone": "America/Mexico_City",
-      "offset": -360,
-      "origin": "https://hossidev.ligainsider.de",
-      "referrer": "",
-      "browserName": "Netscape",
-      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
-      "pathName": "/api/test10/",
-      "onLine": true
-    },
-    "state": "submitted"
+      "data": {
+        "textField": "asd",
+        "textField1": "adssd",
+        "textField2": "sdf",
+        "day": "12\/12\/1987",
+        "textField3": "asdasd",
+        "ukrainischeRStaatsangehorigeR": "nein",
+        "textField4": "gsdf",
+        "dataGrid": [{
+          "nameGebDatum": "ycvswf",
+          "dateTime": "2022-03-02T00:00:00-06:00",
+          "textField": "ydfefd"
+        }],
+        "textField5": "saertfysdf",
+        "textField6": "aesdfqef",
+        "textField7": "12312",
+        "textField8": "sfew",
+        "file": [{
+          "storage": "url",
+          "name": "IMG-20210805-WA0002-03e5df75-c837-43c4-926b-0d9c48e73d02.jpg",
+          "url": "https:\/\/test.kleinanzeigen.mx\/formio\/upload.php?baseUrl=https%3A%2F%2Flvkwovhndcyuiqe.form.io&project=&form=\/IMG-20210805-WA0002-03e5df75-c837-43c4-926b-0d9c48e73d02.jpg",
+          "size": 50798,
+          "type": "image\/jpeg",
+          "data": {
+            "code": 1,
+            "filename": "img-20210805-wa0002.jpg",
+            "baseUrl": "https:\/\/lvkwovhndcyuiqe.form.io",
+            "project": "",
+            "form": ""
+          },
+          "originalName": "IMG-20210805-WA0002.jpg"
+        }],
+        "submit": true,
+        "letzterAufenthaltsstatusInDerUkraine": "asdasdas"
+      },
+      "metadata": {
+        "timezone": "America\/Mexico_City",
+        "offset": -360,
+        "origin": "https:\/\/hossidev.ligainsider.de",
+        "referrer": "",
+        "browserName": "Netscape",
+        "userAgent": "Mozilla\/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit\/603.1.30 (KHTML, like Gecko) Version\/10.0 Mobile\/14E304 Safari\/602.1",
+        "pathName": "\/api\/test10\/",
+        "onLine": true
+      }
   };
   window.onload = function () {
     Formio.createForm(document.getElementById('formio'), 'https://lvkwovhndcyuiqe.form.io/test', {
