@@ -9,50 +9,13 @@
     <script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
 </head>
 <body>
-<!--div style="height: 100px; width: 100px; background: black" onclick="setLanguage('ru')"></div>
-<div style="height: 100px; width: 100px; background: blue" onclick="setData(window.lol)"></div-->
-<?php if (isset($_GET['id'])): ?>
-    <div id="status"></div>
-<?php endif; ?>
 <div id="formio"></div>
 <script type="text/javascript">
   var height = 0;
   var container = document.querySelector('#formio');
-  window.lol = {
-    "data": {
-      "textField": "asd",
-      "textField1": "adssd",
-      "textField2": "sdf",
-      "day": "12/12/1987",
-      "textField3": "asdasd",
-      "ukrainischeRStaatsangehorigeR": "nein",
-      "textField4": "gsdf",
-      "dataGrid": [{
-        "nameGebDatum": "ycvswf",
-        "dateTime": "2022-03-02T00:00:00-06:00",
-        "textField": "ydfefd"
-      }],
-      "textField5": "saertfysdf",
-      "textField6": "aesdfqef",
-      "textField7": "12312",
-      "textField8": "sfew",
-      "submit": true,
-      "letzterAufenthaltsstatusInDerUkraine": "asdasdas"
-    },
-    "metadata": {
-      "timezone": "America/Mexico_City",
-      "offset": -360,
-      "origin": "https://hossidev.ligainsider.de",
-      "referrer": "",
-      "browserName": "Netscape",
-      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
-      "pathName": "/api/test10/",
-      "onLine": true
-    },
-    "state": "submitted"
-  };
   window.onload = function () {
     Formio.createForm(document.getElementById('formio'), 'https://lvkwovhndcyuiqe.form.io/test', {
+      readOnly: true,
       language: 'en',
       i18n: {
         en: {
@@ -69,7 +32,7 @@
         form.submission = {...data}
       }
         <?php if(isset($_GET['id'])): ?>
-      Formio.fetch('https://hossidev.ligainsider.de/api/mongoget/', {
+      Formio.fetch('https://test.kleinanzeigen.mx/formio/mongoget.php', {
         body: JSON.stringify({id: '<?= $_GET['id'] ?>'}),
         headers: {
           'content-type': 'application/json'
@@ -79,12 +42,10 @@
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
-          if (json.code == 1) {
+          if (json.code === 1) {
             setData(json.data);
-            $('#status').text('STATUS: ' + json.data.status)
           } else {
-            $('#status').text('STATUS: NICHT GEFUNDEN')
+            $('#formio').html('<b>STATUS: NICHT GEFUNDEN</b>')
           }
         })
         .catch((error) => {

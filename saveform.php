@@ -9,8 +9,8 @@
     <script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
 </head>
 <body>
-<!--div style="height: 100px; width: 100px; background: black" onclick="setLanguage('ru')"></div>
-<div style="height: 100px; width: 100px; background: blue" onclick="setData(window.lol)"></div-->
+<div style="height: 100px; width: 100px; background: black" onclick="setLanguage('ru')"></div>
+<div style="height: 100px; width: 100px; background: blue" onclick="setData(window.lol)"></div>
 <?php if (isset($_GET['id'])): ?>
     <div id="status"></div>
 <?php endif; ?>
@@ -96,7 +96,7 @@
         //console.log(JSON.stringify(submission));
         window.lol = submission
 
-        return Formio.fetch('https://hossidev.ligainsider.de/api/mongoadd/', {
+        return Formio.fetch('https://test.kleinanzeigen.mx/formio/mongoadd.php', {
           body: JSON.stringify(submission),
           headers: {
             'content-type': 'application/json'
