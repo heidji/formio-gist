@@ -1,4 +1,4 @@
-<iframe id="formioframe" frameborder = "0" style="width: 100%"
+<iframe id="formioframe" frameborder="0" style="width: 100%"
 scrolling = "no"
 src = "http://test.kleinanzeigen.mx/index.php"
 title = "description"> </iframe> <script>
@@ -9,6 +9,5 @@ var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
 var eventer = window[eventMethod];
 var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message";
 eventer(messageEvent, function(e) {
-console.log(e.data.height);
     if ('formio' in e.data) resizeIframe(e.data.height);
 });</script>
