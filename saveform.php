@@ -98,7 +98,7 @@
           })
             .then((response) => response.json())
             .then((json) => {
-              console.log(json);
+              window.location.href = '/formio/getstatus.php?id='+json.id;
             })
             .catch((error) => {
               console.error(error);

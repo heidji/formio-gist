@@ -36,7 +36,7 @@ while (!$unique) {
 $body = str_replace('"', '\"', '<iframe id="formioframe" frameborder="0" style="width: 100%" scrolling = "no" src = "/formio/getform.php?id='.$id.'" title = "description"> </iframe> <script> function resizeIframe(height) { document.getElementById("formioframe").style.height = height + "px" } var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent"; var eventer = window[eventMethod]; var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message"; eventer(messageEvent, function(e) { if ("formio" in e.data) resizeIframe(e.data.height); });</script>');
 $ticket = '{"name": "'.$id.'", "email": "hans@hans.de", "phone": "12345678", "notes": "no notes", "subject": "subject", "message": "", "ip": "79.227.189.214", "topicId": 1 }';
 
-$ch = curl_init('/osticket/api/http.php/tickets.json');
+$ch = curl_init('https://'.$_SERVER['SERVER_NAME'].'/osticket/api/http.php/tickets.json');
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['X-API-Key: 20FC7556700AEE8F44A8B31B6E356D33']);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_POST, 1);
@@ -78,6 +78,7 @@ $stmt->close();
 
 
 if(isset($return)){
+    error_log($id);
     $input->{'_id'} = $id;
     $input->osticket = $return;
     $document1 = $input;
@@ -89,5 +90,5 @@ if(isset($return)){
 }
 
 
-echo json_encode(['code' => 1]);
+echo json_encode(['code' => 1, 'id' => $id]);
 exit;
