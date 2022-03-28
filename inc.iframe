@@ -1,6 +1,6 @@
 <iframe id="formioframe" frameborder="0" style="width: 100%"
 scrolling = "no"
-src = "http://test.kleinanzeigen.mx/getform.php?id="
+src = "/formio/getform.php?id="
 title = "description"> </iframe> <script>
 function resizeIframe(height) {
     document.getElementById('formioframe').style.height = height + 'px'

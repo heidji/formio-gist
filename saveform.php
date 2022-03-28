@@ -17,7 +17,7 @@
         <img onclick="setLanguage('ru')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="/images/ru.png" alt="">
     </div>
 </div>
-<div style="height: 100px; width: 100px; background: blue" onclick="setData(window.lol)"></div>
+<div style="padding: 20px; background: blue" onclick="setData(window.lol)">Eingabehilfe (DEMO)</div>
 <div id="formio"></div>
 <script type="text/javascript">
   var height = 0;
@@ -43,7 +43,7 @@
       "file": [{
         "storage": "url",
         "name": "IMG-20210805-WA0002-03e5df75-c837-43c4-926b-0d9c48e73d02.jpg",
-        "url": "https:\/\/test.kleinanzeigen.mx\/formio\/upload.php?baseUrl=https%3A%2F%2Flvkwovhndcyuiqe.form.io&project=&form=\/IMG-20210805-WA0002-03e5df75-c837-43c4-926b-0d9c48e73d02.jpg",
+        "url": "\/formio\/upload.php?baseUrl=https%3A%2F%2Flvkwovhndcyuiqe.form.io&project=&form=\/IMG-20210805-WA0002-03e5df75-c837-43c4-926b-0d9c48e73d02.jpg",
         "size": 50798,
         "type": "image\/jpeg",
         "data": {
@@ -88,7 +88,7 @@
           //console.log(JSON.stringify(submission));
           window.lol = submission
 
-          return Formio.fetch('https://test.kleinanzeigen.mx/formio/mongoadd.php', {
+          return Formio.fetch('/formio/mongoadd.php', {
             body: JSON.stringify(submission),
             headers: {
               'content-type': 'application/json'
@@ -111,7 +111,7 @@
     }
   }
   window.onload = function () {
-    fetch('https://test.kleinanzeigen.mx/formio/getlanguages.php')
+    fetch('/formio/getlanguages.php')
       .then((response) => response.json())
       .then((json) => {
         languages = json
@@ -119,7 +119,7 @@
       .catch((error) => {
         console.error(error);
       });
-    fetch('https://test.kleinanzeigen.mx/formio/getformioconfig.php')
+    fetch('/formio/getformioconfig.php')
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
@@ -129,44 +129,6 @@
         console.error(error);
       });
   }
-
-  var observeDOM = (function () {
-    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-
-    return function (obj, callback) {
-      if (!obj || obj.nodeType !== 1) return;
-
-      if (MutationObserver) {
-        // define a new observer
-        var mutationObserver = new MutationObserver(callback)
-
-        // have the observer observe foo for changes in children
-        mutationObserver.observe(obj, {childList: true, subtree: true})
-        return mutationObserver
-      }
-
-      // browser support fallback
-      else if (window.addEventListener) {
-        obj.addEventListener('DOMNodeInserted', callback, false)
-        obj.addEventListener('DOMNodeRemoved', callback, false)
-      }
-    }
-  })()
-  observeDOM(container, function (m) {
-    if (container.scrollHeight != height) {
-      if (height != 0)
-        window.parent.postMessage({formio: true, height: container.scrollHeight}, '*');
-      height = container.scrollHeight
-    }
-  });
-
-  /*$(document).bind('DOMSubtreeModified', function(e) {
-    if(document.body.scrollHeight != height){
-      if(height != 0)
-        window.parent.postMessage({formio: true, height: document.body.scrollHeight}, '*');
-      height = document.body.scrollHeight
-    }
-  });*/
 </script>
 </body>
 </html>

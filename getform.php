@@ -11,51 +11,26 @@
 <body>
 <div id="formio"></div>
 <script type="text/javascript">
-  var height = 0;
-  var container = document.querySelector('#formio');
-  window.onload = function () {
-    Formio.createForm(document.getElementById('formio'), 'https://lvkwovhndcyuiqe.form.io/test', {
-      //readOnly: true,
-      language: 'en',
-      i18n: {
-        en: {
-          submitError: 'My custom submission error',
-        },
-        ru: {Familienname: 'PARUSKI', 'Ukrainische(r) Staatsangehörige(r)': 'still paruski'}
-      }
-    }).then((form) => {
-      console.log(form);
-      window.parent.postMessage({formio: true, height: container.scrollHeight}, '*');
-      window.setLanguage = function (lang) {
-        form.language = lang;
-      };
-      window.setData = function (data) {
-        form.submission = {...data}
-      }
-        <?php if(isset($_GET['id'])): ?>
-      Formio.fetch('https://test.kleinanzeigen.mx/formio/mongoget.php', {
-        body: JSON.stringify({id: '<?= $_GET['id'] ?>'}),
-        headers: {
-          'content-type': 'application/json'
-        },
-        method: 'POST',
-        mode: 'cors',
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          if (json.code === 1) {
-            setData(json.data);
-          } else {
-            $('#formio').html('<b>STATUS: NICHT GEFUNDEN</b>')
-          }
-        })
-        <?php endif; ?>
-      form.nosubmit = true;
-      form.on('submit', function (submission) {
-        //console.log(JSON.stringify(submission));
-        window.lol = submission
-        return Formio.fetch('https://test.kleinanzeigen.mx/formio/mongoedit.php', {
-          body: JSON.stringify(submission),
+
+  var languages = false;
+  function waitForLanguages(json){
+    if (languages !== false){
+      Formio.createForm(document.getElementById('formio'), json, {
+        //readOnly: true,
+        language: 'en',
+        i18n: languages
+      }).then((form) => {
+        console.log(form);
+        window.parent.postMessage({formio: true, height: container.scrollHeight}, '*');
+        window.setLanguage = function (lang) {
+          form.language = lang;
+        };
+        window.setData = function (data) {
+          form.submission = {...data}
+        }
+          <?php if(isset($_GET['id'])): ?>
+        Formio.fetch('/formio/mongoget.php', {
+          body: JSON.stringify({id: '<?= $_GET['id'] ?>'}),
           headers: {
             'content-type': 'application/json'
           },
@@ -64,14 +39,61 @@
         })
           .then((response) => response.json())
           .then((json) => {
-            setData(submission);
-            console.log(json);
+            if (json.code === 1) {
+              setData(json.data);
+            } else {
+              $('#formio').html('<b>STATUS: NICHT GEFUNDEN</b>')
+            }
           })
-          .catch((error) => {
-            console.error(error);
-          });
+          <?php endif; ?>
+        form.nosubmit = true;
+        form.on('submit', function (submission) {
+          //console.log(JSON.stringify(submission));
+          window.lol = submission
+          return Formio.fetch('/formio/mongoedit.php', {
+            body: JSON.stringify(submission),
+            headers: {
+              'content-type': 'application/json'
+            },
+            method: 'POST',
+            mode: 'cors',
+          })
+            .then((response) => response.json())
+            .then((json) => {
+              setData(submission);
+              console.log(json);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        });
       });
-    });
+    }
+    else{
+      setTimeout(() => waitForLanguages(json), 50);
+    }
+  }
+
+  var height = 0;
+  var container = document.querySelector('#formio');
+  window.onload = function () {
+    fetch('/formio/getlanguages.php')
+      .then((response) => response.json())
+      .then((json) => {
+        languages = json
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    fetch('/formio/getformioconfig.php')
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        waitForLanguages(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   var observeDOM = (function () {

@@ -17,7 +17,7 @@ function uuid()
 }
 
 if(!isset($_FILES['upload'])){
-    echo "<img src='https://test.kleinanzeigen.mx/uploads".$_GET['form']."' />";
+    echo "<img src='/uploads".$_GET['form']."' />";
     exit;
 }
 
