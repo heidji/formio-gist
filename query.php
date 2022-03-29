@@ -44,15 +44,54 @@ if (isset($_POST)) {
     foreach ($_POST as $key => $dummy) {
         $options['projection'][str_replace('|', '.', $key)] = 1;
     }
-    echo '<pre>' . print_r($options, true) . '</pre>';
+    // clean options / parents cannot be selected when children have been specified
+    $clean = [];
+    foreach($options['projection'] as $key => $dummy){
+        $parts = explode('.', $key);
+        array_pop($parts);
+        if(count($parts) > 0){
+            foreach($options['projection'] as $key1 => $dummy1){
+                if(implode('.', $parts) == $key1)
+                    $clean[] = $key1;
+            }
+        }
+    }
+    foreach($clean as $item){
+        unset($options['projection'][$item]);
+    }
+    //echo '<pre>' . print_r($options, true) . '</pre>';
 
     $query = new MongoDB\Driver\Query($filter, $options);
     $cursor = $manager->executeQuery('db.collection', $query);
 
     $res = $cursor->toArray();
+    $return = [];
+    foreach($res as $item){
+        $return[] = $item->data;
+    }
+
+    $keys = array_map('strlen', array_keys($labels));
+    array_multisort($keys, SORT_DESC, $labels);
+
+    $res_temp = json_encode($res, JSON_UNESCAPED_UNICODE);
+    $find = array_map(fn ($a) => '["'.$a.'"]', array_keys($labels));
+    $replace = array_map(fn ($a) => '["'.$a.'"]', array_values($labels));
+    $res_temp = str_replace(array_keys($labels), array_values($labels), $res_temp);
+
+    //echo '<pre>'.print_r([array_keys($labels), array_values($labels)], true).'</pre>';exit;
+    $res = json_decode($res_temp, JSON_UNESCAPED_UNICODE);
+
+    $return = [];
+    foreach($res as $item){
+        $return[] = $item['data'];
+    }
 
     //echo json_encode(['code' => 1, 'data' => $res], JSON_UNESCAPED_UNICODE);
+    //echo '<pre>'.print_r($res, true).'</pre>';
 }
+
+
+
 ?>
 
 <form action="/formio/query.php" method="post">
@@ -66,10 +105,5 @@ if (isset($_POST)) {
     <?php endforeach; ?>
     <input type="submit">
 </form>
-<?php if(isset($_POST)): ?>
-<Table>
-    <tr>
-        <td></td>
-    </tr>
-</Table>
-<?php endif; ?>
+<?php
+echo json_encode($return, JSON_UNESCAPED_UNICODE);
