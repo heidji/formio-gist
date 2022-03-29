@@ -6,7 +6,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 
 $manager = new MongoDB\Driver\Manager(
-    'mongodb://localhost:27017'
+    'mongodb://mongodb:27017'
 );
 
 $filter = ['_id' => $input->id];
