@@ -22,6 +22,6 @@ if(count($res) == 0){
 }
 
 foreach ($res as $document) {
-    echo json_encode(['code' => 1, 'data' => $document]);
+    echo json_encode(['code' => 1, 'data' => $document], JSON_UNESCAPED_UNICODE);
     exit;
 }

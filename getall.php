@@ -20,6 +20,6 @@ if(count($res) == 0){
 
 foreach ($res as $document) {
     //echo '<pre>'.print_r($document, true).'</pre>';
-    $test = json_encode(['code' => 1, 'data' => $document]);
+    $test = json_encode(['code' => 1, 'data' => $document], JSON_UNESCAPED_UNICODE);
 }
 echo $test;
