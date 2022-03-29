@@ -5,9 +5,10 @@ $manager = new MongoDB\Driver\Manager(
 
 //$filter = ['_id' => $_GET['id']];
 $filter = [];
-$options = [
+$options = [];
+/*$options = [
     'projection' => ['_id' => 0, 'data.dataGrid' => 1]
-];
+];*/
 
 $query = new MongoDB\Driver\Query($filter, $options);
 $cursor = $manager->executeQuery('db.collection', $query);
