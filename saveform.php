@@ -11,10 +11,10 @@
 <body>
 <div style="display: flex; flex-direction: row; justify-content: center">
     <div style="padding: 50px; display: flex; flex-direction: row; width: 90%; justify-content: space-between">
-        <img onclick="setLanguage('de')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="/images/de.png" alt="">
-        <img onclick="setLanguage('ua')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="/images/ua.png" alt="">
-        <img onclick="setLanguage('en')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="/images/uk.png" alt="">
-        <img onclick="setLanguage('ru')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="/images/ru.png" alt="">
+        <img onclick="setLanguage('de')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="images/de.png" alt="">
+        <img onclick="setLanguage('ua')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="images/ua.png" alt="">
+        <img onclick="setLanguage('en')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="images/uk.png" alt="">
+        <img onclick="setLanguage('ru')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="images/ru.png" alt="">
     </div>
 </div>
 <div style="padding: 20px; background: blue" onclick="setData(window.lol)">Eingabehilfe (DEMO)</div>
