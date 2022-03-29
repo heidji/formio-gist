@@ -1,6 +1,6 @@
 <?php
 
-$db = new mysqli("localhost","osticket","secret","osticket");
+$db = new mysqli("mysql","osticket","secret","osticket");
 
 $input = json_decode(file_get_contents('php://input'));
 header('Content-Type: application/json');
@@ -45,7 +45,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 $return = (int)curl_exec($ch);
 curl_close($ch);
 
-$db = new mysqli("localhost","osticket","secret","osticket");
+$db = new mysqli("mysql","osticket","secret","osticket");
 $sql = 'SELECT 
             te.id FROM
         ost_thread_entry te

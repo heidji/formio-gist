@@ -1,6 +1,6 @@
 <?php
 
-$db = new mysqli("localhost","osticket","secret","osticket");
+$db = new mysqli("mysql","osticket","secret","osticket");
 
 $input = json_decode(file_get_contents('php://input'));
 header('Content-Type: application/json');
