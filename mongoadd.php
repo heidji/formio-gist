@@ -1,7 +1,5 @@
 <?php
 
-$db = new mysqli("mysql","osticket","secret","osticket");
-
 $input = json_decode(file_get_contents('php://input'));
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
@@ -37,7 +35,7 @@ $body = str_replace('"', '\"', '<iframe id="formioframe" frameborder="0" style="
 $ticket = '{"name": "'.$id.'", "email": "hans@hans.de", "phone": "12345678", "notes": "no notes", "subject": "subject", "message": "", "ip": "79.227.189.214", "topicId": 1 }';
 
 $ch = curl_init('https://'.$_SERVER['SERVER_NAME'].'/osticket/api/http.php/tickets.json');
-curl_setopt($ch, CURLOPT_HTTPHEADER, ['X-API-Key: 20FC7556700AEE8F44A8B31B6E356D33']);
+curl_setopt($ch, CURLOPT_HTTPHEADER, ['X-API-Key: 403C6161D19761BD3C67C4724C9F5A02']);
 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $ticket);
