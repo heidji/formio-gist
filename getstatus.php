@@ -29,7 +29,7 @@ if (!isset($_GET['id'])) {
         if(!is_numeric($osticket)){
             $status = 'NICHT GEFUNDEN';
         }else{
-            $db = new mysqli("localhost","user","password","osticket");
+            $db = new mysqli("localhost","osticket","secret","osticket");
 
             $sql = 'SELECT 
                         ts.name FROM
