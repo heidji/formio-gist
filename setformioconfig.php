@@ -1,6 +1,6 @@
 <?php
 
-$filename = '/var/www/html/formioconf.json';
+$filename = getcwd().'/formioconf.json';
 
 if(isset($_POST['test'])){
     $text = $_POST['test'];

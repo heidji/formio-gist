@@ -1,6 +1,6 @@
 <?php
 
-$filename = '/var/www/html/languages.json';
+$filename = getcwd().'/languages.json';
 
 if(isset($_POST['test'])){
     $text = $_POST['test'];
