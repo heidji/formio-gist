@@ -17,12 +17,12 @@ function uuid()
 }
 
 if(!isset($_FILES['upload'])){
-    echo "<img src='/uploads".$_GET['form']."' />";
+    echo "<img src='/formio/uploads".$_GET['form']."' />";
     exit;
 }
 
 // We're putting all our files in a directory called images.
-$uploaddir = '/var/www/html/uploads/';
+$uploaddir = getcwd().'/uploads/';
 
 // The posted data, for reference
 $file = $_FILES['upload'];
