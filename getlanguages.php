@@ -1,6 +1,6 @@
 <?php
 
-$filename = '/var/www/html/languages.json';
+$filename = getcwd().'/languages.json';
 
 if (file_exists($filename)) {
     $res = json_decode(file_get_contents($filename), JSON_UNESCAPED_UNICODE);
