@@ -95,7 +95,7 @@ if(isset($apikey)){
     $return = [];
     foreach($res as $item){
         if($item['data'] != null)
-            $return[] = $item['data'];
+            $return[] = ['id' => $item['_id'], 'data' => $item];
     }
 
     echo json_encode($return, JSON_UNESCAPED_UNICODE);
