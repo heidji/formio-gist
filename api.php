@@ -12,8 +12,9 @@ foreach ($headers as $k => $v){
         $apikey = $v;
         break;
     }
-    die('no auth');
 }
+if(!isset($apikey))
+    die('no auth');
 if(isset($apikey)){
     $parts = explode('/', $_SERVER['REQUEST_URI']);
     foreach($parts as $k => $part){
