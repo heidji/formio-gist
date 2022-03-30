@@ -21,13 +21,16 @@
         <td><a href="/formio/saveform.php">Form anlegen</a></td>
     </tr>
     <tr>
-        <td><a href="/osticket/scp/">Ticketsystem (user: heidji@gmail.com, pass: testproject1)</a></td>
+        <td><a href="/osticket/scp/">Ticketsystem (user: ostadmin, pass: Admin1)</a></td>
     </tr>
     <tr>
-        <td><a href="/formio/getstatus.php">Status eines Antrags (user: heidji@gmail.com, pass: testproject1)</a></td>
+        <td><a href="/formio/getstatus.php">Status eines Antrags</a></td>
     </tr>
     <tr>
-        <td><a href="/formio/query.php">Datenübermittlung</a></td>
+        <td><a href="/formio/manageapi.php">Datenübermittlung</a></td>
+    </tr>
+    <tr>
+        <td><a href="/formio/setapi.php">Anlage URI Datenübermittlung</a></td>
     </tr>
     </tbody>
 </table>
