@@ -49,7 +49,7 @@ if (isset($_GET['uri'])) {
 }elseif (isset($_POST['uri'])) {
     $uri = $_POST['uri'];
 
-    $projection = ['forsurenoonewilleverpickthisfieldname1235454' => 1];
+    $projection = ['_id' => 0, 'forsurenoonewilleverpickthisfieldname1235454' => 1];
     foreach ($_POST['fields'] as $key => $dummy) {
         $projection[$key] = 1;
     }
