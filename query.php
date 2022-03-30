@@ -111,7 +111,7 @@ $uploaddir = getcwd().'/uploads/';
             </div>
         </div>
     <?php endforeach; ?>
-    <input type="text">
+    <input type="text" name="_internal_endpoint">
     <input type="submit">
 </form>
 <?php
