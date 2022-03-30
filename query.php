@@ -116,3 +116,5 @@ $uploaddir = getcwd().'/uploads/';
 </form>
 <?php
 echo json_encode($return, JSON_UNESCAPED_UNICODE);
+echo '<pre>'.print_r($_POST, true).'</pre>';
+echo '<pre>'.print_r($output, true).'</pre>';

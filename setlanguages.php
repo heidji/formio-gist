@@ -2,7 +2,18 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <?php
 
-$filename = getcwd().'/languages.json';
+function createPath($path)
+{
+    if (is_dir($path)) return true;
+    $prev_path = substr($path, 0, strrpos($path, '/', -2) + 1);
+    $return = createPath($prev_path);
+    return ($return && is_writable($prev_path)) ? mkdir($path) : false;
+}
+
+$dir = getcwd().'/conf';
+createPath($dir);
+
+$filename = $dir.'/languages.json';
 
 if(isset($_POST['test'])){
     $text = $_POST['test'];
