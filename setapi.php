@@ -94,13 +94,6 @@ if (isset($_GET['uri'])) {
 ?>
 
 <form action="/formio/setapi.php" method="post">
-    <div style="position:relative; height: 20px">
-        <div style="display: flex; position: absolute; flex-direction: row; left: 20px">
-            <input <?= isset($projection) && in_array('_id', array_keys($projection)) ? 'checked' : '' ?>
-                    name=fields[_id]" type="checkbox"/>
-            <span>ID</span>
-        </div>
-    </div>
     <?php foreach ($output as $item): ?>
         <div style="position:relative; height: 20px">
             <div style="display: flex; position: absolute; flex-direction: row; left: <?= count(explode('|', $item[0])) * 10 ?>px">
