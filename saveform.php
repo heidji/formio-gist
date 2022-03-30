@@ -17,118 +17,32 @@
         <img onclick="setLanguage('ru')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="images/ru.png" alt="">
     </div>
 </div>
-<div style="padding: 20px; background: blue" onclick="setData(window.lol)">Eingabehilfe (DEMO)</div>
-<div id="formio"></div>
-<script type="text/javascript">
-  var height = 0;
-  var container = document.querySelector('#formio');
-  window.lol = {
+<script>
+  window.demo = {
     "data": {
-      "textField": "asd",
-      "textField1": "adssd",
-      "textField2": "sdf",
+      "familienname": "Mustermann",
+      "textField1": "Max",
+      "textField2": "",
       "day": "12\/12\/1987",
-      "textField3": "asdasd",
+      "textField3": "Frankfurt aM",
       "ukrainischeRStaatsangehorigeR": "nein",
-      "textField4": "gsdf",
+      "textField4": "Ledig",
       "dataGrid": [{
-        "nameGebDatum": "ycvswf",
+        "nameGebDatum": "Minni",
         "dateTime": "2022-03-02T00:00:00-06:00",
-        "textField": "ydfefd"
+        "textField": "geflüchtet"
       }],
-      "textField5": "saertfysdf",
-      "textField6": "aesdfqef",
-      "textField7": "12312",
-      "textField8": "sfew",
-      "file": [{
-        "storage": "url",
-        "name": "IMG-20210805-WA0002-03e5df75-c837-43c4-926b-0d9c48e73d02.jpg",
-        "url": "\/formio\/upload.php?baseUrl=https%3A%2F%2Flvkwovhndcyuiqe.form.io&project=&form=\/IMG-20210805-WA0002-03e5df75-c837-43c4-926b-0d9c48e73d02.jpg",
-        "size": 50798,
-        "type": "image\/jpeg",
-        "data": {
-          "code": 1,
-          "filename": "img-20210805-wa0002.jpg",
-          "baseUrl": "https:\/\/lvkwovhndcyuiqe.form.io",
-          "project": "",
-          "form": ""
-        },
-        "originalName": "IMG-20210805-WA0002.jpg"
-      }],
+      "textField5": "Martina",
+      "textField6": "Lange Strasse",
+      "textField7": "60315",
+      "textField8": "Frankfurt aM",
       "submit": true,
-      "letzterAufenthaltsstatusInDerUkraine": "asdasdas"
-    },
-    "metadata": {
-      "timezone": "America\/Mexico_City",
-      "offset": -360,
-      "origin": "https:\/\/hossidev.ligainsider.de",
-      "referrer": "",
-      "browserName": "Netscape",
-      "userAgent": "Mozilla\/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit\/603.1.30 (KHTML, like Gecko) Version\/10.0 Mobile\/14E304 Safari\/602.1",
-      "pathName": "\/api\/test10\/",
-      "onLine": true
+      "letzterAufenthaltsstatusInDerUkraine": "Student"
     }
   };
-  var languages = false;
-  function waitForLanguages(json){
-    if (languages !== false){
-      Formio.createForm(document.getElementById('formio'), json, {
-        language: 'de',
-        i18n: languages
-      }).then((form) => {
-        window.parent.postMessage({formio: true, height: container.scrollHeight}, '*');
-        window.setLanguage = function (lang) {
-          form.language = lang;
-        };
-        window.setData = function (data) {
-          form.submission = {...data}
-        }
-        form.nosubmit = true;
-        form.on('submit', function (submission) {
-          //console.log(JSON.stringify(submission));
-          window.lol = submission
-
-          return Formio.fetch('/formio/mongoadd.php', {
-            body: JSON.stringify(submission),
-            headers: {
-              'content-type': 'application/json'
-            },
-            method: 'POST',
-            mode: 'cors',
-          })
-            .then((response) => response.json())
-            .then((json) => {
-              window.location.href = '/formio/getstatus.php?id='+json.id;
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        });
-      });
-    }
-    else{
-      setTimeout(() => waitForLanguages(json), 50);
-    }
-  }
-  window.onload = function () {
-    fetch('/formio/getlanguages.php')
-      .then((response) => response.json())
-      .then((json) => {
-        languages = json
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    fetch('/formio/getformioconfig.php')
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        waitForLanguages(json);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
 </script>
+<div style="padding: 20px; background: blue" onclick="setData(window.demo)">Eingabehilfe (DEMO)</div>
+<div id="formio"></div>
+<script type="text/javascript" src="embed.js"></script>
 </body>
 </html>
