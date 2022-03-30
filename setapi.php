@@ -29,7 +29,7 @@ $output = iterate($json);
 //echo '<pre>'.print_r($output, true).'</pre>';
 
 $manager = new MongoDB\Driver\Manager(
-    'mongodb://localhost:27017'
+    'mongodb://mongodb:27017'
 );
 
 /*$bulk = new MongoDB\Driver\BulkWrite;
@@ -70,7 +70,7 @@ if (isset($_GET['uri'])) {
     }
 
     $manager = new MongoDB\Driver\Manager(
-        'mongodb://localhost:27017'
+        'mongodb://mongodb:27017'
     );
 
     $bulk = new MongoDB\Driver\BulkWrite;
