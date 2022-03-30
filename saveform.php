@@ -17,11 +17,7 @@
         <img onclick="setLanguage('ru')" style="border: 1px solid black; cursor: pointer; height: auto;width: auto;max-width: 60px;max-height: 60px;" src="images/ru.png" alt="">
     </div>
 </div>
-<div style="padding: 20px; background: blue" onclick="setData(window.lol)">Eingabehilfe (DEMO)</div>
-<div id="formio"></div>
-<script type="text/javascript">
-  var height = 0;
-  var container = document.querySelector('#formio');
+<script>
   window.lol = {
     "data": {
       "textField": "asd",
@@ -69,66 +65,9 @@
       "onLine": true
     }
   };
-  var languages = false;
-  function waitForLanguages(json){
-    if (languages !== false){
-      Formio.createForm(document.getElementById('formio'), json, {
-        language: 'de',
-        i18n: languages
-      }).then((form) => {
-        window.parent.postMessage({formio: true, height: container.scrollHeight}, '*');
-        window.setLanguage = function (lang) {
-          form.language = lang;
-        };
-        window.setData = function (data) {
-          form.submission = {...data}
-        }
-        form.nosubmit = true;
-        form.on('submit', function (submission) {
-          //console.log(JSON.stringify(submission));
-          window.lol = submission
-
-          return Formio.fetch('/formio/mongoadd.php', {
-            body: JSON.stringify(submission),
-            headers: {
-              'content-type': 'application/json'
-            },
-            method: 'POST',
-            mode: 'cors',
-          })
-            .then((response) => response.json())
-            .then((json) => {
-              window.location.href = '/formio/getstatus.php?id='+json.id;
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        });
-      });
-    }
-    else{
-      setTimeout(() => waitForLanguages(json), 50);
-    }
-  }
-  window.onload = function () {
-    fetch('/formio/getlanguages.php')
-      .then((response) => response.json())
-      .then((json) => {
-        languages = json
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    fetch('/formio/getformioconfig.php')
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        waitForLanguages(json);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
 </script>
+<div style="padding: 20px; background: blue" onclick="setData(window.lol)">Eingabehilfe (DEMO)</div>
+<div id="formio"></div>
+<script type="text/javascript" src="embed.js"></script>
 </body>
 </html>

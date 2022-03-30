@@ -1,9 +1,17 @@
 <?php
 
+function createPath($path)
+{
+    if (is_dir($path)) return true;
+    $prev_path = substr($path, 0, strrpos($path, '/', -2) + 1);
+    $return = createPath($prev_path);
+    return ($return && is_writable($prev_path)) ? mkdir($path) : false;
+}
+
 $json = json_decode(file_get_contents(getcwd() . '/formioconf.json'));
 //echo json_encode(json_decode($json), JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
 
-function iterate($node, $output = [], $map = 'data', $iterable_types = ['components', 'columns'], $iterable_with_key = ['datagrid'])
+function iterate($node, $output = [], $map = 'data', $iterable_types = ['components', 'columns', 'panel'], $iterable_with_key = ['datagrid'])
 {
     if (isset($node->type) && $node->type == 'button') return $output;
     if (isset($node->key) && !in_array($node->type, $iterable_types))
@@ -39,7 +47,7 @@ if (isset($_POST)) {
     );
     $filter = [];
     $options = [
-        'projection' => ['_id' => 0]
+        'projection' => ['_id' => 0, 'forsurenoonewilleverpickthisfieldname1235454' => 1]
     ];
     foreach ($_POST as $key => $dummy) {
         $options['projection'][str_replace('|', '.', $key)] = 1;
@@ -90,7 +98,7 @@ if (isset($_POST)) {
     //echo '<pre>'.print_r($res, true).'</pre>';
 }
 
-
+$uploaddir = getcwd().'/uploads/';
 
 ?>
 
@@ -103,6 +111,7 @@ if (isset($_POST)) {
             </div>
         </div>
     <?php endforeach; ?>
+    <input type="text">
     <input type="submit">
 </form>
 <?php

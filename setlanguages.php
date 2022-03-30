@@ -1,3 +1,5 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <?php
 
 $filename = getcwd().'/languages.json';
@@ -15,7 +17,11 @@ if (file_exists($filename)) {
     $text = '';
 }
 ?>
-<form action="/formio/setlanguages.php" method="post">
-    <textarea name="test" id="test" cols="200" rows="50"><?= $text ?></textarea>
-    <input type="submit">
-</form>
+<div class="container" style="padding: 20px;">
+    <form action="/formio/setlanguages.php" method="post">
+        <div class="mb-3">
+            <textarea name="test" id="test" cols="200" rows="30"><?= $text ?></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

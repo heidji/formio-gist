@@ -48,8 +48,6 @@
           <?php endif; ?>
         form.nosubmit = true;
         form.on('submit', function (submission) {
-          //console.log(JSON.stringify(submission));
-          window.lol = submission
           return Formio.fetch('/formio/mongoedit.php', {
             body: JSON.stringify(submission),
             headers: {
