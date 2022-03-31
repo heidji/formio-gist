@@ -25,7 +25,7 @@ if(isset($apikey)){
         die('no auth');
     $uri = $parts[$k+1];
 
-    $filter = ['_id' => new MongoDB\BSON\ObjectId($apikey) , 'uri' => $uri];
+    $filter = ['_id' => $apikey , 'uri' => $uri];
     $options = [];
 
     $query = new MongoDB\Driver\Query($filter, $options);
