@@ -92,8 +92,9 @@ if (isset($_POST['checks'])) {
 
     $return = [];
     foreach($res as $item){
-        $temp = $item['data'];
+        $temp = [];
         $temp['_id'] = $item['_id'];
+        $temp = array_merge($temp, $item['data']);
         $return[] = $temp;
     }
 
@@ -111,7 +112,7 @@ $uploaddir = getcwd().'/uploads/';
         <tr>
             <td>
                 <div style="padding-left: <?= count(explode('|', $item[0])) * 30 ?>px" class="form-check">
-                    <input <?= isset($_POST) && in_array($item[0], array_keys($_POST['checks'])) ? 'checked' : '' ?>
+                    <input <?= isset($_POST['checks']) && in_array($item[0], array_keys($_POST['checks'])) ? 'checked' : '' ?>
                             class="form-check-input" id="elem_<?= $item[0] ?>" name="checks[<?= $item[0] ?>]" type="checkbox"/>
                     <label class="form-check-label" for="elem_<?= $item[0] ?>"><?= $item[1] ?></label>
                 </div>
