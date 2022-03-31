@@ -21,7 +21,7 @@ require_once ('inc/navbar.php');
   window.demo = {
     "data": {
       "familienname": "Mustermann",
-      "textField1": "Max",
+      "vorname": "Max",
       "textField2": "",
       "day": "12\/12\/1987",
       "textField3": "Frankfurt aM",
