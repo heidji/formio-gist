@@ -45,7 +45,7 @@ if (file_exists($filename)) {
         <pre>
             <?=
             htmlspecialchars('<div id="formio"></div>
-            <script type="text/javascript" src="embed.js"></script>');
+            <script type="text/javascript" src="https://'.getenv('OSTICKET_DOMAIN').'/embed.js"></script>');
             ?>
         </pre>
     </div>
