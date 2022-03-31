@@ -44,7 +44,12 @@ if (file_exists($filename)) {
     <div class="container" style="background: white">
         <pre>
             <?=
-            htmlspecialchars('<div id="formio"></div>
+            htmlspecialchars('
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                   integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdn.form.io/formiojs/formio.full.min.css">
+            <script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
+            <div id="formio"></div>
             <script type="text/javascript" src="embed.js"></script>');
             ?>
         </pre>
