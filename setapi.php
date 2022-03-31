@@ -1,4 +1,9 @@
 <?php
+$page_title = 'Endpunkt anlegen/bearbeiten';
+require_once('inc/login.php');
+require_once('inc/navbar.php');
+?>
+<?php
 
 $json = json_decode(file_get_contents(getcwd() . '/conf/formioconf.json'));
 //echo json_encode(json_decode($json), JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
@@ -9,7 +14,7 @@ function iterate($node, $output = [], $map = 'data', $iterable_types = ['compone
     if (isset($node->key) && !in_array($node->type, $iterable_types))
         $map .= '|' . $node->key;
     if ($map != 'data' && isset($node->type) && (!in_array($node->type, $iterable_types) && !in_array($node->type, $iterable_with_key)
-        || in_array($node->type, $iterable_with_key) && !in_array($node->type, $output)))
+            || in_array($node->type, $iterable_with_key) && !in_array($node->type, $output)))
         $output[] = [$map, $node->label];
     $next = '';
     if (isset($node->components))
@@ -46,7 +51,23 @@ if (isset($_GET['uri'])) {
     $cursor = $manager->executeQuery('db.apis', $query);
     $data = $cursor->toArray()[0];
     $projection = json_decode(json_encode($data->projection, JSON_UNESCAPED_UNICODE), true);
-}elseif (isset($_POST['uri'])) {
+} elseif (isset($_POST['uri'])) {
+
+    $new = true;
+    $filter = ['uri' => $_POST['uri']];
+    $options = [];
+
+    $query = new MongoDB\Driver\Query($filter, $options);
+    $cursor = $manager->executeQuery('db.apis', $query);
+    $res = $cursor->toArray();
+    if(count($res) > 0)
+        $new = false;
+
+    $arr = array_values(unpack('N1a/n4b/N1c', openssl_random_pseudo_bytes(16)));
+    $arr[2] = ($arr[2] & 0x0fff) | 0x4000;
+    $arr[3] = ($arr[3] & 0x3fff) | 0x8000;
+    $id = vsprintf('%08x%04x%04x%04x%04x%08x', $arr);
+
     $uri = $_POST['uri'];
 
     $projection = ['_id' => 0, 'forsurenoonewilleverpickthisfieldname1235454' => 1];
@@ -74,17 +95,20 @@ if (isset($_GET['uri'])) {
     );
 
     $bulk = new MongoDB\Driver\BulkWrite;
+
     $doc = [
         'uri' => $uri,
         'active' => true,
         'projection' => $projection
     ];
+    if($new)
+        $doc['_id'] = $id;
 
-        $bulk->update(
-            [
-                'uri' => $_POST['uri'],
-            ], $doc, ['upsert' => true]
-        );
+    $bulk->update(
+        [
+            'uri' => $_POST['uri'],
+        ], $doc, ['upsert' => true]
+    );
 
     $manager->executeBulkWrite('db.apis', $bulk);
     header('Location: /formio/setapi.php?uri=' . $_POST['uri']);
@@ -93,17 +117,20 @@ if (isset($_GET['uri'])) {
 
 ?>
 
-<form action="/formio/setapi.php" method="post">
-    <?php foreach ($output as $item): ?>
-        <div style="position:relative; height: 20px">
-            <div style="display: flex; position: absolute; flex-direction: row; left: <?= count(explode('|', $item[0])) * 10 ?>px">
+<div class="container" style="margin-left: 50px; width: 50%">
+    <form action="/formio/setapi.php" method="post">
+        <?php foreach ($output as $item): ?>
+            <div style="padding-left: <?= count(explode('|', $item[0])) * 30 - 60 ?>px" class="form-check">
                 <input <?= isset($projection) && in_array($item[0], array_keys($projection)) ? 'checked' : '' ?>
-                        name=fields[<?= $item[0] ?>]" type="checkbox"/>
-                <span><?= $item[1] ?></span>
+                        type="checkbox" class="form-check-input" id="elem_<?= $item[0] ?>" name=fields[<?= $item[0] ?>]">
+                <label class="form-check-label" for="elem_<?= $item[0] ?>"><?= $item[1] ?></label>
             </div>
+        <?php endforeach; ?>
+        <div class="form-group">
+            <label for="uri">URI</label>
+            <input name="uri" type="text" class="form-control" id="uri" placeholder="URI" value="<?= $uri ?? '' ?>">
         </div>
-    <?php endforeach; ?>
-    <label for="uri">URI</label>
-    <input id="uri" type="text" name="uri" value="<?= isset($data) ? $data->uri : '' ?>">
-    <input type="submit">
-</form>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
