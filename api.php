@@ -36,7 +36,7 @@ if(isset($apikey)){
     $data = $res[0];
     $projection = json_decode(json_encode($data->projection, JSON_UNESCAPED_UNICODE), true);
 
-    $json = json_decode(file_get_contents(getcwd() . '/formioconf.json'));
+    $json = json_decode(file_get_contents(getcwd() . '/conf/formioconf.json'));
 //echo json_encode(json_decode($json), JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
 
     function iterate($node, $output = [], $map = 'data', $iterable_types = ['components', 'columns', 'panel'], $iterable_with_key = ['datagrid'])

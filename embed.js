@@ -23,7 +23,10 @@ function waitForLanguages(json){
         })
           .then((response) => response.json())
           .then((json) => {
-            window.location.href = '/formio/getstatus.php?id='+json.id;
+            if(typeof window.onFormioSubmit != 'undefined')
+              window.onFormioSubmit(json)
+            else
+              console.log(json);
           })
           .catch((error) => {
             console.error(error);

@@ -51,6 +51,12 @@ if (file_exists($filename)) {
                     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             <link rel="stylesheet" href="https://cdn.form.io/formiojs/formio.full.min.css">
             <script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
+            
+            <script>
+            window.onFormioSubmit = (json) => {
+                // callback for submit
+            }
+            </script>
             <div id="formio"></div>
             <script type="text/javascript" src="https://'.getenv('OSTICKET_DOMAIN').'/formio/embed.js"></script>');
             ?>
