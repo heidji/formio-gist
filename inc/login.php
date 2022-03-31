@@ -2,20 +2,25 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <?php
 
+$logins = [
+    'samir' => 'Admin1',
+    'ostadmin' => 'Admin1',
+];
+
 $logged_in = false;
 $bad_login = false;
 if(isset($_POST['username']) && isset($_POST['password'])){
-    if($_POST['username'] == 'ostadmin' && $_POST['password'] == 'Admin1'){
-        $_COOKIE['username'] = 'ostadmin';
-        $_COOKIE['password'] = md5('Admin1');
-        setcookie('username', 'ostadmin',time()+7*24*60*60, "/");
-        setcookie('password', md5('Admin1'),time()+7*24*60*60, "/");
+    if(in_array($_POST['username'], array_keys($logins)) && md5($_POST['password']) == md5($logins[$_POST['username']])){
+        $_COOKIE['username'] = $_POST['username'];
+        $_COOKIE['password'] = md5($logins[$_POST['username']]);
+        setcookie('username', $_POST['username'],time()+7*24*60*60, "/");
+        setcookie('password', md5($logins[$_POST['username']]),time()+7*24*60*60, "/");
     }else{
         $bad_login = true;
     }
 }
 if(isset($_COOKIE['username']) && isset($_COOKIE['password'])){
-    if($_COOKIE['username'] == 'ostadmin' && $_COOKIE['password'] == md5('Admin1')){
+    if(in_array($_COOKIE['username'], array_keys($logins))  && $_COOKIE['password'] == md5($logins[$_COOKIE['username']])){
         $logged_in = true;
     }
 }

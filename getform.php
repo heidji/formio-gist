@@ -21,7 +21,7 @@
         i18n: languages
       }).then((form) => {
         console.log(form);
-        window.parent.postMessage({formio: true, height: container.scrollHeight}, '*');
+        window.parent.postMessage({formio<?= $_GET['id'] ?>: true, height: container.scrollHeight}, '*');
         window.setLanguage = function (lang) {
           form.language = lang;
         };
@@ -119,7 +119,7 @@
   observeDOM(container, function (m) {
     if (container.scrollHeight != height) {
       if (height != 0)
-        window.parent.postMessage({formio: true, height: container.scrollHeight}, '*');
+        window.parent.postMessage({formio<?= $_GET['id'] ?>: true, height: container.scrollHeight}, '*');
       height = container.scrollHeight
     }
   });
