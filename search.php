@@ -40,7 +40,7 @@ foreach($output as $item){
 
 if (isset($_POST['checks'])) {
     $manager = new MongoDB\Driver\Manager(
-        'mongodb://localhost:27017'
+        'mongodb://mongodb:27017'
     );
     $filter = [];
     $options = [
