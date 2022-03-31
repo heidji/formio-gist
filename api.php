@@ -8,7 +8,7 @@ $manager = new MongoDB\Driver\Manager(
 );
 
 foreach ($headers as $k => $v){
-    if($k == 'X-API-Key'){
+    if(strtolower($k) == strtolower('X-API-Key')){
         $apikey = $v;
         break;
     }
