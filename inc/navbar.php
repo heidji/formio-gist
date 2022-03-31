@@ -22,6 +22,7 @@
                     <a class="dropdown-item" href="/formio/saveform.php">Antrag anlegen</a>
                     <a class="dropdown-item" href="/osticket/scp/login.php">Ticketsystem</a>
                     <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/formio/search.php">Datensuche</a>
                     <a class="dropdown-item" href="/formio/manageapi.php">Pull API Endpunkte</a>
                 </div>
             </li>
