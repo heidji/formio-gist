@@ -45,20 +45,20 @@ if (file_exists($filename)) {
         <pre>
             <?=
             htmlspecialchars('
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-                    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="https://cdn.form.io/formiojs/formio.full.min.css">
-            <script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
-            
-            <script>
-            window.onFormioSubmit = (json) => {
-                // callback for submit
-            }
-            </script>
-            <div id="formio"></div>
-            <script type="text/javascript" src="embed.js"></script>');
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.form.io/formiojs/formio.full.min.css">
+<script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
+
+<script>
+window.onFormioSubmit = (json) => {
+    // callback for submit
+}
+</script>
+<div id="formio"></div>
+<script type="text/javascript" src="embed.js"></script>');
             ?>
         </pre>
     </div>

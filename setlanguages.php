@@ -39,3 +39,25 @@ if (file_exists($filename)) {
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<div class="container" style="background: cadetblue; padding: 20px;">
+    Endpunkt URI:
+    <div class="container" style="background: white">
+        <pre>
+            <?=
+            htmlspecialchars('
+{
+	"ua": {
+		"Vorname": "ім\'я",
+		"Familienname": "прізвище"
+	},
+	"ru": {
+		"Vorname": "Имя",
+		"Familienname": "Фамилия"
+	}
+  	....
+}
+            ');
+            ?>
+        </pre>
+    </div>
+</div>
