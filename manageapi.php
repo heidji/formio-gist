@@ -2,12 +2,9 @@
 $page_title = 'Pull API Endpunkte';
 require_once ('inc/login.php');
 require_once ('inc/navbar.php');
+require_once('inc/func.php');
 ?>
 <?php
-
-$manager = new MongoDB\Driver\Manager(
-    'mongodb://localhost:27017'
-);
 
 $filter = [];
 $options = [];

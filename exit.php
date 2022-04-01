@@ -1,10 +1,9 @@
 <?php
+require_once('inc/func.php');
+
 if (!isset($_GET['id'])) {
     $status = 'NICHT GEFUNDEN';
 }else{
-    $manager = new MongoDB\Driver\Manager(
-        'mongodb://localhost:27017'
-    );
 
     $filter = ['_id' => $_GET['id']];
     $options = [];
@@ -24,8 +23,6 @@ if (!isset($_GET['id'])) {
         if(!is_numeric($osticket)){
             $status = 'NICHT GEFUNDEN';
         }else{
-            $db = new mysqli("localhost","user","password","osticket");
-
             $sql = 'SELECT 
                         ts.name FROM
                     ost_ticket_status ts
