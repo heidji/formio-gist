@@ -91,6 +91,6 @@ function iterate($node, $output = [], $map = 'data')
     return $output;
 }
 $manager = new MongoDB\Driver\Manager(
-    'mongodb://localhost:27017'
+    'mongodb://mongodb:27017'
 );
-$db = new mysqli("localhost","user","password","osticket");
+$db = new mysqli("mysql","osticket","secret","osticket");
