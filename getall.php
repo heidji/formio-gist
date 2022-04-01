@@ -13,12 +13,12 @@ $options = [];
 $query = new MongoDB\Driver\Query($filter, $options);
 $cursor = $manager->executeQuery('db.collection', $query);
 
-$res = $cursor->toArray();
+$res = array_reverse($cursor->toArray())[0];
 
-if(count($res) == 0){
+/*if(count($res) == 0){
     echo json_encode(['code' => 0]);
     exit;
-}
+}*/
 
 /*foreach ($res as $document) {
     //echo '<pre>'.print_r($document, true).'</pre>';
