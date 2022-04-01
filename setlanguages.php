@@ -40,7 +40,7 @@ if (file_exists($filename)) {
     </form>
 </div>
 <div class="container" style="background: cadetblue; padding: 20px;">
-    Endpunkt URI:
+    Beispiel:
     <div class="container" style="background: white">
         <pre>
             <?=
