@@ -3,13 +3,11 @@
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
+require_once('inc/func.php');
 
 if (!isset($_GET['id'])) {
     $status = 'NICHT GEFUNDEN';
 }else{
-    $manager = new MongoDB\Driver\Manager(
-        'mongodb://mongodb:27017'
-    );
 
     $filter = ['_id' => $_GET['id']];
     $options = [];
@@ -29,7 +27,6 @@ if (!isset($_GET['id'])) {
         if(!is_numeric($osticket)){
             $status = 'NICHT GEFUNDEN';
         }else{
-            $db = new mysqli("mysql","osticket","secret","osticket");
 
             $sql = 'SELECT 
                         ts.name FROM

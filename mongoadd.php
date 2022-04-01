@@ -4,10 +4,7 @@ $input = json_decode(file_get_contents('php://input'));
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
-
-$manager = new MongoDB\Driver\Manager(
-    'mongodb://mongodb:27017'
-);
+require_once('inc/func.php');
 
 if (!isset($input->data)) {
     echo json_encode(['code' => 0, 'msg' => 'nodata']);
@@ -43,7 +40,6 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 $return = (int)curl_exec($ch);
 curl_close($ch);
 
-$db = new mysqli("mysql","osticket","secret","osticket");
 $sql = 'SELECT 
             te.id FROM
         ost_thread_entry te

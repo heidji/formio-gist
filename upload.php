@@ -37,7 +37,6 @@ $new_name = $_POST['name'];
 
 $path = $uploaddir;
 createPath($path);
-error_log($path . $new_name);
 
 //if(Extra::createPath($path)){
 
