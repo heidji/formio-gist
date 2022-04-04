@@ -1,6 +1,6 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php
 $page_title = 'Antrag anlegen';
-require_once('inc/login.php');
 require_once('inc/navbar.php');
 ?>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"
