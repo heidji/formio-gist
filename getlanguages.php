@@ -1,5 +1,5 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
 function createPath($path)
 {
     if (is_dir($path)) return true;

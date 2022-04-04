@@ -1,4 +1,6 @@
 var languages = false;
+host = document.currentScript.getAttribute('data-app') ?? '';
+if(host !== '' && host.substr(host.length - 1) !== '/') host = host+'/';
 function waitForLanguages(json){
   if (languages !== false){
     Formio.createForm(document.getElementById('formio'), json, {
@@ -13,7 +15,7 @@ function waitForLanguages(json){
       }
       form.nosubmit = true;
       form.on('submit', function (submission) {
-        return Formio.fetch('/formio/mongoadd.php', {
+        return Formio.fetch(host+'mongoadd.php', {
           body: JSON.stringify(submission),
           headers: {
             'content-type': 'application/json'
@@ -39,7 +41,7 @@ function waitForLanguages(json){
   }
 }
 window.onload = function () {
-  fetch('/formio/getlanguages.php')
+  fetch(host+'getlanguages.php')
     .then((response) => response.json())
     .then((json) => {
       languages = json
@@ -47,7 +49,7 @@ window.onload = function () {
     .catch((error) => {
       console.error(error);
     });
-  fetch('/formio/getformioconfig.php')
+  fetch(host+'getformioconfig.php')
     .then((response) => response.json())
     .then((json) => {
       console.log(json);

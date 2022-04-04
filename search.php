@@ -4,6 +4,11 @@ require_once('inc/login.php');
 require_once('inc/navbar.php');
 require_once('inc/func.php');
 ?>
+
+<style>
+    .form-group{ margin-bottom: 0}
+</style>
+
 <?php
 
 $json = json_decode(file_get_contents(getcwd() . '/conf/formioconf.json'));
@@ -46,6 +51,7 @@ if (isset($_POST['checks'])) {
         unset($options['projection'][$item]);
     }
     $options['projection']['_id'] = 1;
+    $options['projection']['osticket'] = 1;
     //echo '<pre>' . print_r($options, true) . '</pre>';
     $query = new MongoDB\Driver\Query($filter, $options);
     $cursor = $manager->executeQuery('db.collection', $query);
@@ -71,6 +77,7 @@ if (isset($_POST['checks'])) {
     foreach($res as $item){
         $temp = [];
         $temp['_id'] = $item['_id'];
+        $temp['osticket'] = $item['osticket'];
         $temp = array_merge($temp, $item['data']);
         $return[] = $temp;
     }

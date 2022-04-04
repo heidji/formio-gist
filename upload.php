@@ -17,7 +17,7 @@ function uuid()
 }
 
 if(!isset($_FILES['upload'])){
-    echo "<img src='/formio/uploads".$_GET['form']."' />";
+    header('Location: /formio/uploads'.$_GET['form']);
     exit;
 }
 
