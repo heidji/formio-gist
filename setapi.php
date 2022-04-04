@@ -37,6 +37,7 @@ if (isset($_GET['uri'])) {
     $res = $cursor->toArray();
     if (count($res) > 0)
         $new = false;
+    $data = $res[0];
 
     $arr = array_values(unpack('N1a/n4b/N1c', openssl_random_pseudo_bytes(16)));
     $arr[2] = ($arr[2] & 0x0fff) | 0x4000;
@@ -106,16 +107,18 @@ if (isset($_GET['uri'])) {
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<?php if(!$new): ?>
 <div class="container" style="background: cadetblue; padding: 20px;">
     Endpunkt URI:
-    <div class="container" style="background: white">
-        <pre>
+    <div class="container" style="background: white; padding: 0">
+        <pre style="margin: 0">
             <?=
             htmlspecialchars("
 curl --location --request GET 'https://".getenv('OSTICKET_DOMAIN')."/formio/api.php/".($_GET['uri'] ?? '<URI>')."' \
-    --header 'X-API-KEY: 933f9ebf06b440f59aa47b2b01b2d280'
+    --header 'X-API-KEY: ".$data->_id."'
             ");
             ?>
         </pre>
     </div>
 </div>
+<?php endif; ?>
