@@ -37,7 +37,6 @@ if (isset($_GET['uri'])) {
     $res = $cursor->toArray();
     if (count($res) > 0)
         $new = false;
-    $data = $res[0];
 
     $arr = array_values(unpack('N1a/n4b/N1c', openssl_random_pseudo_bytes(16)));
     $arr[2] = ($arr[2] & 0x0fff) | 0x4000;
