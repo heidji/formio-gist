@@ -112,7 +112,7 @@ if (isset($_GET['uri'])) {
         <pre>
             <?=
             htmlspecialchars("
-curl --location --request GET 'https://test.kleinanzeigen.mx/formio/api.php/".($_GET['uri'] ?? '<URI>')."' \
+curl --location --request GET 'https://".getenv('OSTICKET_DOMAIN')."/formio/api.php/".($_GET['uri'] ?? '<URI>')."' \
     --header 'X-API-KEY: 933f9ebf06b440f59aa47b2b01b2d280'
             ");
             ?>
