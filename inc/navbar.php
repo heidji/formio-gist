@@ -22,7 +22,7 @@
                         <li><a href="/formio/setformioconfig.php">Formfelder konfigurieren</a></li>
                         <li><a href="/formio/setlanguages.php">Sprachtexte konfigurieren</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/formio/saveform.php">Antrag anlegen</a></li>
+                        <li><a href="/formio/saveform.php" target="_blank">Antrag anlegen</a></li>
                         <li><a class="dropdown-item" href="/osticket/scp/login.php" target="_blank">Ticketsystem</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a class="dropdown-item" href="/formio/search.php">Datensuche</a></li>
