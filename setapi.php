@@ -110,8 +110,8 @@ if (isset($_GET['uri'])) {
 <?php if(!$new): ?>
 <div class="container" style="background: cadetblue; padding: 20px;">
     Endpunkt URI:
-    <div class="container" style="background: white">
-        <pre>
+    <div class="container" style="background: white; padding: 0">
+        <pre style="margin: 0">
             <?=
             htmlspecialchars("
 curl --location --request GET 'https://test.kleinanzeigen.mx/formio/api.php/".($_GET['uri'] ?? '<URI>')."' \
