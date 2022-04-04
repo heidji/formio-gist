@@ -78,7 +78,7 @@
     window.location.href = '/formio/exit.php?id=' + json.id;
   }
 </script>
-<script type="text/javascript" src="https://<?= getenv('OSTICKET_DOMAIN') ?>/embed.js"></script>
+<script type="text/javascript" src="https://<?= getenv('OSTICKET_DOMAIN') ?>/formio/embed.js"></script>
 <script>
   $("#lang").on("change",
     function() {
