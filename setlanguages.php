@@ -34,14 +34,14 @@ if (file_exists($filename)) {
 <div class="container" style="padding: 20px;">
     <form action="/formio/setlanguages.php" method="post">
         <div class="mb-3">
-            <textarea name="test" id="test" cols="200" rows="30"><?= $text ?></textarea>
+            <textarea name="test" id="test" cols="200" rows="15"><?= $text ?></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 <div class="container" style="background: cadetblue; padding: 20px;">
     Beispiel:
-    <div class="container" style="background: white">
+    <div class="container" style="background: white; padding: 0">
         <pre>
             <?=
             htmlspecialchars('
@@ -53,8 +53,11 @@ if (file_exists($filename)) {
 	"ru": {
 		"Vorname": "Имя",
 		"Familienname": "Фамилия"
+	},
+	"en": {
+		"Vorname": "First Name",
+		"Familienname": "Last Name"
 	}
-  	....
 }
             ');
             ?>
