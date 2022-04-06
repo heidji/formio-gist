@@ -75,7 +75,7 @@ function iterate($node, $output = [], $map = 'data')
             $output = iterate($item, $output, $map);
         }
     }else{
-        if(isset($types[$node->type]) && $types[$node->type]['iterable_node'] !== false){
+        if(isset($node->type, $types[$node->type]) && $types[$node->type]['iterable_node'] !== false){
             foreach ($node->{$types[$node->type]['iterable_node']} as $item) {
                 $output = iterate($item, $output, $map);
             }
