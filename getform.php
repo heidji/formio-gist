@@ -16,7 +16,7 @@
     if (languages !== false){
       Formio.createForm(document.getElementById('formio'), json, {
         //readOnly: true,
-        language: 'en',
+        language: 'de',
         i18n: languages
       }).then((form) => {
         console.log(form);
