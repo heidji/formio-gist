@@ -49,6 +49,21 @@ if(isset($apikey)){
     foreach ($projection as $key => $dummy) {
         $options['projection'][str_replace('|', '.', $key)] = 1;
     }
+    // clean options / parents cannot be selected when children have been specified
+    $clean = [];
+    foreach($options['projection'] as $key => $dummy){
+        $parts = explode('.', $key);
+        array_pop($parts);
+        if(count($parts) > 0){
+            foreach($options['projection'] as $key1 => $dummy1){
+                if(implode('.', $parts) == $key1)
+                    $clean[] = $key1;
+            }
+        }
+    }
+    foreach($clean as $item){
+        unset($options['projection'][$item]);
+    }
     $query = new MongoDB\Driver\Query([], $options);
     $cursor = $manager->executeQuery('db.collection', $query);
 
