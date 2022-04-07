@@ -27,13 +27,21 @@ if (!isset($_GET['id'])) {
         if(!is_numeric($osticket)){
             $status = 'NICHT GEFUNDEN';
         }else{
-
+            // get ticket status or parent status
             $sql = 'SELECT 
                         ts.name FROM
                     ost_ticket_status ts
-                    JOIN ost_ticket t
-                    on t.status_id = ts.id
-                    where t.number = ?
+                    JOIN 
+                    (SELECT
+                    if(xt.status_id is not null, xt.status_id, t.status_id) as res
+						FROM
+					ost_ticket t
+                    LEFT JOIN
+                    ost_ticket xt
+                    on xt.ticket_id = t.ticket_pid
+                    and t.ticket_pid is not null
+                    where t.number = ?) t
+                    on t.res = ts.id
                     limit 1';
 
             $stmt = $db->prepare($sql);
