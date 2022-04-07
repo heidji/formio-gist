@@ -19,7 +19,6 @@
         language: 'de',
         i18n: languages
       }).then((form) => {
-        console.log(form);
         window.parent.postMessage({formio<?= $_GET['id'] ?>: true, height: container.scrollHeight}, '*');
         window.setLanguage = function (lang) {
           form.language = lang;
@@ -58,7 +57,6 @@
             .then((response) => response.json())
             .then((json) => {
               setData(submission);
-              console.log(json);
             })
             .catch((error) => {
               console.error(error);
@@ -85,7 +83,6 @@
     fetch('/formio/getformioconfig.php')
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
         waitForLanguages(json);
       })
       .catch((error) => {
